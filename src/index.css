@@ -1,0 +1,45 @@
+body {
+   margin: 0;
+   padding: 0;
+}
+
+* {
+   box-sizing: border-box;
+   word-break: break-all;
+   line-height: 2rem;
+   margin: 0;
+   padding: 0;
+}
+
+#root,
+body,
+html {
+   height: 100%;
+}
+
+body {
+   font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+   font-weight: 300;
+}
+
+code {
+   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+}
+
+p {
+   margin: 0;
+}
+
+.ql-editor {
+   font-size: 1rem;
+}
+
+.ql-editor.ql-blank::before {
+   color: #cccccc;
+   font-style: normal;
+}
+
+::-webkit-scrollbar {
+   display: none;
+}

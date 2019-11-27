@@ -9,8 +9,7 @@ const Wrapper = styled("div")`
    top: 0;
    height: 100%;
    background-color: #fff;
-   width: 15rem;
-   box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+   width: 18rem;
 
    @media (max-width: 768px) {
       width: 100%;

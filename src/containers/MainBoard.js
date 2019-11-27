@@ -23,7 +23,7 @@ class MainBoard extends Component {
          display: flex;
          flex-wrap: wrap;
          overflow-y: scroll;
-         margin-left: 15rem;
+         margin-left: 18rem;
          padding: 1rem;
 
          @media (max-width: 768px) {

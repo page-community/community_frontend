@@ -39,6 +39,7 @@ class MainBoard extends Component {
 
       const Profile = styled("img")`
          border-radius: 50%;
+         margin: 1rem;
       `;
 
       const itemList = article.boards.map(el => (

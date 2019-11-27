@@ -42,6 +42,23 @@ class MainBoard extends Component {
          border-radius: 50%;
       `;
 
+      const LoginBtn = styled("button")`
+         background: none;
+         border: 1px solid #495057;
+         color: #495057;
+         outline: none;
+         font-size: 0.875rem;
+         padding: 0.5rem 0.875rem;
+         border-radius: 4px;
+         line-height: 0.875rem;
+         cursor: pointer;
+
+         &:hover {
+            border: 1px solid #0c8599;
+            color: #0c8599;
+         }
+      `;
+
       const itemList = article.boards.map(el => (
          <Card key={el.id} data={el}></Card>
       ));
@@ -50,7 +67,11 @@ class MainBoard extends Component {
          <Wrapper>
             <NavBar />
             <Header>
-               <Profile src={user.user.picture} alt="profile_img" />
+               {user.user.id ? (
+                  <Profile src={user.user.picture} alt="profile_img" />
+               ) : (
+                  <LoginBtn>로그인</LoginBtn>
+               )}
             </Header>
             <CardList>{itemList}</CardList>
          </Wrapper>

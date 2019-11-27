@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { GoogleLogin } from "react-google-login";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import { IoLogoFacebook, IoLogoGoogle } from "react-icons/io";
+import { facebookId, googleId } from "../secret.json";
 
 @inject("user")
 @observer
@@ -16,6 +18,19 @@ class Facebook extends React.Component {
          accessToken: response.accessToken,
          name: response.name,
          picture: response.picture.data.url
+      };
+      user.setUser(data);
+      history.push("/");
+   };
+
+   responseGoogle = response => {
+      const { user, history } = this.props;
+      if (!response.googleId) return;
+      const data = {
+         id: response.googleId,
+         accessToken: response.accessToken,
+         name: response.profileObj.name,
+         picture: response.profileObj.imageUrl
       };
       user.setUser(data);
       history.push("/");
@@ -83,7 +98,7 @@ class Facebook extends React.Component {
                   <Heading>누구나 작가가 되어보아요!</Heading>
                   <LoginForm>
                      <FacebookLogin
-                        appId={518427429008174}
+                        appId={facebookId}
                         fields="name, picture"
                         isMobile={true}
                         disableMobileRedirect={true}
@@ -100,12 +115,24 @@ class Facebook extends React.Component {
                            </SNSLogin>
                         )}
                      />
-                     <SNSLogin background="#c92a2a">
-                        <IoLogoGoogle
-                           style={{ color: "#fff", fontSize: "2rem" }}
-                        />
-                        <LoginText>Google 로그인</LoginText>
-                     </SNSLogin>
+                     <GoogleLogin
+                        clientId={googleId}
+                        render={renderProps => (
+                           <SNSLogin
+                              background="#c92a2a"
+                              onClick={renderProps.onClick}
+                           >
+                              <IoLogoGoogle
+                                 style={{ color: "#fff", fontSize: "2rem" }}
+                              />
+                              <LoginText>Google 로그인</LoginText>
+                           </SNSLogin>
+                        )}
+                        onSuccess={this.responseGoogle}
+                        onFailure={response => console.log(response)}
+                        cookiePolicy={"single_host_origin"}
+                     />
+                     ,
                   </LoginForm>
                </FormWrapper>
             </Right>

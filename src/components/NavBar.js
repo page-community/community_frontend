@@ -10,6 +10,7 @@ const Wrapper = styled("div")`
    height: 100%;
    background-color: #fff;
    width: 15rem;
+   box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 
    @media (max-width: 768px) {
       width: 100%;
@@ -86,6 +87,18 @@ const NavBar = props => {
                   <FaPen />
                </Icon>
                <p>새 글 작성</p>
+            </Item>
+            <Item onClick={handleRedirect}>
+               <Icon>
+                  <FaPen />
+               </Icon>
+               <p>메뉴2</p>
+            </Item>
+            <Item onClick={handleRedirect}>
+               <Icon>
+                  <FaPen />
+               </Icon>
+               <p>메뉴3</p>
             </Item>
          </ItemList>
       </Wrapper>

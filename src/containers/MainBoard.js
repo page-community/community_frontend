@@ -28,7 +28,7 @@ class MainBoard extends Component {
 
          @media (max-width: 768px) {
             margin: 0;
-            margin-top: 10rem;
+            margin-top: 2rem;
          }
       `;
 

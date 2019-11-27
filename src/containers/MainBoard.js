@@ -35,11 +35,11 @@ class MainBoard extends Component {
       const Header = styled("div")`
          display: flex;
          justify-content: flex-end;
+         padding: 1.75rem;
       `;
 
       const Profile = styled("img")`
          border-radius: 50%;
-         margin: 1rem;
       `;
 
       const itemList = article.boards.map(el => (

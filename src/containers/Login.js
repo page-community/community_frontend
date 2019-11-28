@@ -11,7 +11,7 @@ import { facebookId, googleId } from "../secret.json";
 @observer
 class Login extends React.Component {
    responseFacebook = response => {
-      const { user, history } = this.props;
+      const { user } = this.props;
       if (!response.id) return;
       const data = {
          id: response.id,
@@ -20,11 +20,11 @@ class Login extends React.Component {
          picture: response.picture.data.url
       };
       user.setUser(data);
-      history.push("/main");
+      this.handleRedirect();
    };
 
    responseGoogle = response => {
-      const { user, history } = this.props;
+      const { user } = this.props;
       if (!response.googleId) return;
       const data = {
          id: response.googleId,
@@ -33,6 +33,11 @@ class Login extends React.Component {
          picture: response.profileObj.imageUrl
       };
       user.setUser(data);
+      this.handleRedirect();
+   };
+
+   handleRedirect = () => {
+      const { history } = this.props;
       history.push("/main");
    };
 
@@ -40,12 +45,20 @@ class Login extends React.Component {
       const Wrapper = styled("div")`
          display: flex;
          height: 100%;
+
+         @media (max-width: 1200px) {
+            flex-direction: column;
+         }
       `;
 
       const Left = styled("div")`
          flex: 1;
          padding: 0, 4rem;
          background-color: #343a40;
+
+         @media (max-width: 1200px) {
+            flex: 3;
+         }
       `;
 
       const Right = styled("div")`
@@ -55,28 +68,48 @@ class Login extends React.Component {
          justify-content: center;
          align-items: center;
          background-color: #f1f3f5;
+
+         @media (max-width: 1200px) {
+            justify-content: flex-start;
+            flex: 7;
+         }
       `;
 
       const FormWrapper = styled("div")`
-         width: 500px;
+         width: 600px;
+         box-shadow: 0, 0, 4px, rgba(0, 0, 0, 0.05);
+         font-size: 1.75rem;
+         @media (max-width: 1200px) {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+         }
       `;
 
       const Heading = styled("h2")`
          font-size: 1.75rem;
-         font-weight: 400;
+         font-weight: 320;
          margin-bottom: 1rem;
+
+         @media (max-width: 1200px) {
+            font-size: 1rem;
+         }
       `;
 
       const LoginForm = styled("div")`
          background-color: #fff;
          padding: 3rem;
+
+         @media (max-width: 1200px) {
+            padding: 1rem;
+         }
       `;
 
       const SNSLogin = styled("div")`
          display: flex;
          background: ${props => props.background};
          align-items: center;
-         padding: 0.875rem;
+         padding: 0.75rem;
          cursor: pointer;
 
          & + div {
@@ -88,6 +121,27 @@ class Login extends React.Component {
          font-size: 1.2rem;
          color: #fff;
          padding-left: 1rem;
+
+         @media (max-width: 1200px) {
+            font-size: 1rem;
+         }
+      `;
+
+      const GuestLogin = styled("div")`
+         font-size: 0.85rem;
+         font-weight: 350;
+         border-top: 1px solid #ced4da;
+         text-align: right;
+      `;
+
+      const GuestLoginText = styled("p")`
+         color: #0c8599;
+         cursor: pointer;
+         transition: 0.3s;
+
+         &:hover {
+            opacity: 0.7;
+         }
       `;
 
       return (
@@ -132,7 +186,11 @@ class Login extends React.Component {
                         onFailure={response => console.log(response)}
                         cookiePolicy={"single_host_origin"}
                      />
-                     ,
+                     <GuestLogin>
+                        <GuestLoginText onClick={this.handleRedirect}>
+                           로그인 하지 않고 둘러보기
+                        </GuestLoginText>
+                     </GuestLogin>
                   </LoginForm>
                </FormWrapper>
             </Right>

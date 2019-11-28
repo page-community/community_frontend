@@ -19,7 +19,8 @@ html {
 
 body {
    background-color: #f1f3f5;
-   font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+   font-family: "Apple SD Gothic Neo", AppleSDGothicNeo, "Noto Sans CJK KR",
+      NanumGothic, "Malgun Gothic", "맑은 고딕", 돋움, dotum, arial, sans-serif;
    font-weight: 300;
 }
 

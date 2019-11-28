@@ -53,7 +53,7 @@ class DetailBoard extends Component {
          height: 100%;
          background-color: #fff;
 
-         @media (max-width: 768px) {
+         @media (max-width: 1024px) {
             width: 100%;
             padding: 20px;
          }

@@ -53,7 +53,7 @@ const Item = styled("li")`
       background-color: #f1f3f5;
    }
 
-   @media (max-width: 768px) {
+   @media (max-width: 1024px) {
       padding: 0.7rem 0;
       justify-content: center;
       background-color: #fff;
@@ -68,7 +68,7 @@ const Icon = styled("span")`
    display: flex;
    margin-right: 1rem;
 
-   @media (max-width: 768px) {
+   @media (max-width: 1024px) {
       display: none;
    }
 `;

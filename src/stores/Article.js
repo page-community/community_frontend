@@ -1,14 +1,23 @@
-import { observable, flow } from "mobx";
+import { observable, flow, computed } from "mobx";
 import axios from "axios";
 
 class ArticleStore {
    @observable
    boards = [];
 
-   fetchArticles = flow(function*() {
-      const response = yield axios.get("http://localhost:4000/boards");
+   @observable
+   max;
+
+   fetchArticles = flow(function*(page) {
+      const response = yield axios.get(`http://localhost:4000/boards/${page}`);
       if (response.status === 200) {
-         this.boards = response.data;
+         this.boards = [...this.boards, ...response.data];
+      }
+   });
+
+   moreArticles = flow(function*(page) {
+      if ((page - 1) * 12 + 1 < this.max) {
+         yield this.fetchArticles(page);
       }
    });
 
@@ -19,10 +28,19 @@ class ArticleStore {
       }
    });
 
+   getCount = flow(function*() {
+      const response = yield axios.get("http://localhost:4000/boards/count");
+      this.max = response.data.size;
+   });
+
    postArticle = flow(function*(data) {
       const response = yield axios.post("http://localhost:4000/post", data);
       return response;
    });
+
+   @computed get boardSize() {
+      return this.boards.length;
+   }
 }
 
 export default ArticleStore;

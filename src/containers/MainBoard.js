@@ -8,10 +8,33 @@ import { withRouter } from "react-router-dom";
 @inject("article", "user")
 @observer
 class MainBoard extends Component {
+   constructor(props) {
+      super(props);
+      this.page = 1;
+      this.contents = React.createRef();
+   }
+
    componentDidMount() {
       const { article } = this.props;
-      article.fetchArticles();
+      article.fetchArticles(this.page);
+      article.getCount();
+      window.addEventListener("scroll", this.handleScroll);
    }
+
+   componentWillUnmount() {
+      window.removeEventListener("scroll", this.handleScroll);
+   }
+
+   handleScroll = () => {
+      const { innerHeight } = window;
+      const { scrollHeight } = document.body;
+      const scrollTop =
+         (document.documentElement && document.documentElement.scrollTop) ||
+         document.body.scrollTop;
+      if (scrollHeight - innerHeight - scrollTop < 10) {
+         this.props.article.moreArticles(++this.page);
+      }
+   };
 
    handleLogin = () => {
       const { history } = this.props;
@@ -21,14 +44,13 @@ class MainBoard extends Component {
    render() {
       const { article, user } = this.props;
       const Wrapper = styled("div")`
-         background-color: #f1f3f5;
+         // background-color: #f1f3f5;
          height: 100%;
       `;
 
       const CardList = styled("div")`
          display: flex;
          flex-wrap: wrap;
-         overflow-y: scroll;
          margin-left: 18rem;
          padding: 1rem;
 
@@ -67,12 +89,13 @@ class MainBoard extends Component {
          }
       `;
 
-      const itemList = article.boards.map(el => (
-         <Card key={el.id} data={el}></Card>
-      ));
+      const itemList = article.boards.map(el => <Card data={el}></Card>);
 
       return (
-         <Wrapper>
+         <Wrapper
+            onScroll={this.handleScroll}
+            ref={ref => (this.contents = ref)}
+         >
             <NavBar />
             <Header>
                {user.user.id ? (

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Card from "../components/Card";
 import NavBar from "../components/NavBar";
 import { inject, observer } from "mobx-react";
+import { withRouter } from "react-router-dom";
 
 @inject("article", "user")
 @observer
@@ -11,6 +12,11 @@ class MainBoard extends Component {
       const { article } = this.props;
       article.fetchArticles();
    }
+
+   handleLogin = () => {
+      const { history } = this.props;
+      history.push("/");
+   };
 
    render() {
       const { article, user } = this.props;
@@ -72,7 +78,7 @@ class MainBoard extends Component {
                {user.user.id ? (
                   <Profile src={user.user.picture} alt="profile_img" />
                ) : (
-                  <LoginBtn>로그인</LoginBtn>
+                  <LoginBtn onClick={this.handleLogin}>로그인</LoginBtn>
                )}
             </Header>
             <CardList>{itemList}</CardList>
@@ -81,4 +87,4 @@ class MainBoard extends Component {
    }
 }
 
-export default MainBoard;
+export default withRouter(MainBoard);

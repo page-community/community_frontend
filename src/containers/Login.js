@@ -9,7 +9,7 @@ import { facebookId, googleId } from "../secret.json";
 
 @inject("user")
 @observer
-class Facebook extends React.Component {
+class Login extends React.Component {
    responseFacebook = response => {
       const { user, history } = this.props;
       if (!response.id) return;
@@ -20,7 +20,7 @@ class Facebook extends React.Component {
          picture: response.picture.data.url
       };
       user.setUser(data);
-      history.push("/");
+      history.push("/main");
    };
 
    responseGoogle = response => {
@@ -33,7 +33,7 @@ class Facebook extends React.Component {
          picture: response.profileObj.imageUrl
       };
       user.setUser(data);
-      history.push("/");
+      history.push("/main");
    };
 
    render() {
@@ -141,4 +141,4 @@ class Facebook extends React.Component {
    }
 }
 
-export default withRouter(Facebook);
+export default withRouter(Login);

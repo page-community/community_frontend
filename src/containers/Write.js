@@ -25,7 +25,7 @@ class Write extends Component {
       const res = await article.postArticle(data);
       alert(res.data);
       if (res.status === 200) {
-         history.push("/");
+         history.push("/main");
       }
    };
 

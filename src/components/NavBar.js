@@ -11,16 +11,17 @@ const Wrapper = styled("div")`
    background-color: #fff;
    width: 18rem;
 
-   @media (max-width: 768px) {
+   @media (max-width: 1024px) {
       width: 100%;
       height: auto;
+      position: relative;
    }
 `;
 
 const ItemList = styled("ul")`
    width: 100%;
 
-   @media (max-width: 768px) {
+   @media (max-width: 1024px) {
       display: flex;
       height: 100%;
       justify-content: space-around;
@@ -34,8 +35,8 @@ const Logo = styled("div")`
    cursor: pointer;
    font-size: 1.2rem;
 
-   @media (max-width: 768px) {
-      text-align: center;
+   @media (max-width: 1024px) {
+      display: none;
    }
 `;
 

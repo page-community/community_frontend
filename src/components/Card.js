@@ -7,7 +7,6 @@ const Wrapper = styled("div")`
    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
    cursor: pointer;
    margin: 0.85rem;
-   height: 30rem;
 
    @media (max-width: 1920px) {
       width: calc(25% - 1.7rem);
@@ -17,12 +16,16 @@ const Wrapper = styled("div")`
       width: calc(33.333% - 1.7rem);
    }
 
-   @media (max-width: 1024px) {
+   @media (max-width: 1200px) {
       width: calc(50% - 1.7rem);
    }
 
-   @media (max-width: 768px) {
+   @media (max-width: 1024px) {
       width: 100%;
+
+      & + div {
+         margin-top: 2rem;
+      }
    }
 `;
 

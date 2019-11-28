@@ -54,9 +54,10 @@ class MainBoard extends Component {
          margin-left: 18rem;
          padding: 1rem;
 
-         @media (max-width: 768px) {
-            margin: 0;
-            margin-top: 2rem;
+         @media (max-width: 1024px) {
+            margin-top: 5rem;
+            padding: 0.75rem
+            margin-left: 0;
          }
       `;
 
@@ -64,6 +65,10 @@ class MainBoard extends Component {
          display: flex;
          justify-content: flex-end;
          padding: 1.75rem;
+
+         @media (max-width: 1023px) {
+            background-color: #fff;
+         }
       `;
 
       const Profile = styled("img")`
@@ -96,7 +101,6 @@ class MainBoard extends Component {
             onScroll={this.handleScroll}
             ref={ref => (this.contents = ref)}
          >
-            <NavBar />
             <Header>
                {user.user.id ? (
                   <Profile src={user.user.picture} alt="profile_img" />
@@ -104,6 +108,7 @@ class MainBoard extends Component {
                   <LoginBtn onClick={this.handleLogin}>로그인</LoginBtn>
                )}
             </Header>
+            <NavBar />
             <CardList>{itemList}</CardList>
          </Wrapper>
       );

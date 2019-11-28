@@ -16,8 +16,8 @@ class MainBoard extends Component {
 
    componentDidMount() {
       const { article } = this.props;
-      article.fetchArticles(this.page);
-      article.getCount();
+      !article.boards.length && article.fetchArticles(this.page);
+      !article.max && article.getCount();
       window.addEventListener("scroll", this.handleScroll);
    }
 

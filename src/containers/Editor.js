@@ -59,7 +59,7 @@ class Editor extends Component {
          color: white;
          padding: 12px;
          flex: 9.5;
-         overflowy: scroll;
+         overflow-y: scroll;
       `;
 
       const { editor } = this.props;

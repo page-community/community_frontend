@@ -25,14 +25,14 @@ class Write extends Component {
       const res = await article.postArticle(data);
       alert(res.data);
       if (res.status === 200) {
+         editor.clear();
          history.push("/main");
       }
    };
 
    handleTitle = title => {
-      this.setState({
-         title
-      });
+      const { editor } = this.props;
+      editor.setTitle(title);
    };
 
    render() {

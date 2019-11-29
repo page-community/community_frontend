@@ -1,15 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import Modal from "../components/Modal";
 import { GoogleLogin } from "react-google-login";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import { IoLogoFacebook, IoLogoGoogle, IoMdMail } from "react-icons/io";
 import { facebookId, googleId } from "../secret.json";
+import IconInput from "../components/IconInput";
 
 @inject("user")
 @observer
 class Login extends React.Component {
+   state = {
+      visible: false
+   };
+
+   openModal = () => {
+      this.setState({
+         visible: true
+      });
+   };
+
+   closeModal = e => {
+      this.setState({
+         visible: false
+      });
+   };
+
    responseFacebook = response => {
       const { user } = this.props;
       if (!response.id) return;
@@ -88,13 +106,12 @@ class Login extends React.Component {
 
       const Heading = styled("h2")`
          font-size: 1.75rem;
-         font-weight: 320;
          margin-bottom: 1rem;
+         font-weight: normal;
 
          @media (max-width: 1200px) {
             font-size: 1.2rem;
             margin-top: 3rem;
-            font-weight: normal;
          }
       `;
 
@@ -147,6 +164,22 @@ class Login extends React.Component {
          }
       `;
 
+      const Button = styled("button")`
+         background-color: #0c8599;
+         color: #fff;
+         border: none;
+         outline: none;
+         cursor: pointer;
+         width: 100%;
+         font-size: 1rem;
+         margin-top: 1rem;
+         transition: 0.3s;
+
+         &:hover {
+            opacity: 0.8;
+         }
+      `;
+
       return (
          <Wrapper>
             <Left></Left>
@@ -154,7 +187,7 @@ class Login extends React.Component {
                <FormWrapper>
                   <Heading>누구나 작가가 되어보아요!</Heading>
                   <LoginForm>
-                     <SNSLogin background="#e9ecef">
+                     <SNSLogin onClick={this.openModal} background="#e9ecef">
                         <IoMdMail style={{ color: "#000", fontSize: "2rem" }} />
                         <LoginText color="black">이메일 로그인</LoginText>
                      </SNSLogin>
@@ -202,6 +235,14 @@ class Login extends React.Component {
                   </LoginForm>
                </FormWrapper>
             </Right>
+            <Modal visible={this.state.visible} closeModal={this.closeModal}>
+               <IconInput icon="email" placeholder="이메일을 입력해주세요." />
+               <IconInput
+                  icon="password"
+                  placeholder="비밀번호를 입력해주세요."
+               />
+               <Button>로그인</Button>
+            </Modal>
          </Wrapper>
       );
    }

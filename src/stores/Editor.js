@@ -1,11 +1,18 @@
 import { observable, action, computed } from "mobx";
 
 class EditorStore {
+   @observable title = "";
+
    @observable
    articles = [];
 
    @observable
    page = 1;
+
+   @action
+   setTitle(title) {
+      this.title = title;
+   }
 
    @action
    setArticle(data) {
@@ -23,6 +30,10 @@ class EditorStore {
    getArticle(page) {
       const finding = this.articles.find(el => el.page === page);
       return finding ? finding.text : "데이터가 업소용";
+   }
+
+   @action clear() {
+      this.articles = [];
    }
 
    @action

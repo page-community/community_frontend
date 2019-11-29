@@ -51,7 +51,7 @@ const BackBtn = styled(IoMdArrowBack)`
 const Header = props => {
    const { handleWrite, handleTitle, history } = props;
 
-   const [visible, setVisible] = useToolTip(false);
+   // const [visible, setVisible] = useToolTip(false);
 
    const handleBack = () => {
       history.goBack();
@@ -67,11 +67,11 @@ const Header = props => {
          <Actions>
             <Button onClick={handleWrite}>작성하기</Button>
          </Actions>
-         <ToolTip
+         {/* <ToolTip
             visible={visible}
             variant="danger"
             text="오류가 발생했습니다."
-         />
+         /> */}
       </WriteHeader>
    );
 };

@@ -4,7 +4,7 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { GoogleLogin } from "react-google-login";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
-import { IoLogoFacebook, IoLogoGoogle } from "react-icons/io";
+import { IoLogoFacebook, IoLogoGoogle, IoMdMail } from "react-icons/io";
 import { facebookId, googleId } from "../secret.json";
 
 @inject("user")
@@ -93,12 +93,15 @@ class Login extends React.Component {
 
          @media (max-width: 1200px) {
             font-size: 1.2rem;
+            margin-top: 3rem;
+            font-weight: normal;
          }
       `;
 
       const LoginForm = styled("div")`
          background-color: #fff;
          padding: 3rem;
+         border-radius: 4px;
 
          @media (max-width: 1200px) {
             padding: 1rem;
@@ -119,7 +122,7 @@ class Login extends React.Component {
 
       const LoginText = styled("p")`
          font-size: 1.2rem;
-         color: #fff;
+         color: ${props => (props.color ? "#000" : "#fff")};
          padding-left: 1rem;
 
          @media (max-width: 1200px) {
@@ -151,6 +154,11 @@ class Login extends React.Component {
                <FormWrapper>
                   <Heading>누구나 작가가 되어보아요!</Heading>
                   <LoginForm>
+                     <SNSLogin background="#e9ecef">
+                        <IoMdMail style={{ color: "#000", fontSize: "2rem" }} />
+                        <LoginText color="black">이메일 로그인</LoginText>
+                     </SNSLogin>
+
                      <FacebookLogin
                         appId={facebookId}
                         fields="name, picture"

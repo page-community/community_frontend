@@ -38,27 +38,6 @@ class DetailBoard extends Component {
    render() {
       const { data, page } = this.state;
 
-      const Wrapper = styled("div")`
-         display: flex;
-         flex-direction: column;
-         height: 100%;
-         align-items: center;
-         background-color: #f1f3f5;
-      `;
-
-      const Inner = styled("div")`
-         display: flex;
-         flex-direction: column;
-         width: 50%;
-         height: 100%;
-         background-color: #fff;
-
-         @media (max-width: 1024px) {
-            width: 100%;
-            padding: 20px;
-         }
-      `;
-
       return (
          <Wrapper>
             <Inner>
@@ -74,5 +53,26 @@ class DetailBoard extends Component {
       );
    }
 }
+
+const Wrapper = styled("div")`
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   align-items: center;
+   background-color: #f1f3f5;
+`;
+
+const Inner = styled("div")`
+   display: flex;
+   flex-direction: column;
+   width: 50%;
+   height: 100%;
+   background-color: #fff;
+
+   @media (max-width: 1024px) {
+      width: 100%;
+      padding: 20px;
+   }
+`;
 
 export default DetailBoard;

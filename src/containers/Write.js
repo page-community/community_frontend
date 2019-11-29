@@ -36,10 +36,6 @@ class Write extends Component {
    };
 
    render() {
-      const WriteArea = styled("div")`
-         display: flex;
-      `;
-
       return (
          <div>
             <Header
@@ -54,5 +50,9 @@ class Write extends Component {
       );
    }
 }
+
+const WriteArea = styled("div")`
+   display: flex;
+`;
 
 export default withRouter(Write);

@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
-import ToolTip from "../components/ToolTip";
-import useToolTip from "../hooks/useToolTip";
 
 const WriteHeader = styled("div")`
    background-color: #343a40;

@@ -51,17 +51,6 @@ class Editor extends Component {
    };
 
    render() {
-      const Wrapper = styled("div")`
-         flex: 1;
-      `;
-
-      const Input = styled(ReactQuill)`
-         color: white;
-         padding: 12px;
-         flex: 9.5;
-         overflow-y: scroll;
-      `;
-
       const { editor } = this.props;
 
       return (
@@ -93,5 +82,16 @@ class Editor extends Component {
       );
    }
 }
+
+const Wrapper = styled("div")`
+   flex: 1;
+`;
+
+const Input = styled(ReactQuill)`
+   color: white;
+   padding: 12px;
+   flex: 9.5;
+   overflow-y: scroll;
+`;
 
 export default Editor;

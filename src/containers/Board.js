@@ -17,16 +17,6 @@ class Board extends Component {
    render() {
       const { editor } = this.props;
 
-      const Wrapper = styled("div")`
-         flex: 1;
-      `;
-
-      const Inner = styled("div")`
-         padding: 24px 27px;
-         overflow-y: scroll;
-         height: calc(100vh - 4rem);
-      `;
-
       return (
          <Wrapper>
             <Inner>
@@ -41,5 +31,15 @@ class Board extends Component {
       );
    }
 }
+
+const Wrapper = styled("div")`
+   flex: 1;
+`;
+
+const Inner = styled("div")`
+   padding: 24px 27px;
+   overflow-y: scroll;
+   height: calc(100vh - 4rem);
+`;
 
 export default Board;

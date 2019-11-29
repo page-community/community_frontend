@@ -43,56 +43,6 @@ class MainBoard extends Component {
 
    render() {
       const { article, user } = this.props;
-      const Wrapper = styled("div")`
-         // background-color: #f1f3f5;
-         height: 100%;
-      `;
-
-      const CardList = styled("div")`
-         display: flex;
-         flex-wrap: wrap;
-         margin-left: 18rem;
-         padding: 1rem;
-
-         @media (max-width: 1024px) {
-            margin-top: 5rem;
-            padding: 0.75rem
-            margin-left: 0;
-         }
-      `;
-
-      const Header = styled("div")`
-         display: flex;
-         justify-content: flex-end;
-         padding: 1.75rem;
-
-         @media (max-width: 1023px) {
-            background-color: #fff;
-         }
-      `;
-
-      const Profile = styled("img")`
-         width: 50px;
-         height: 50px;
-         border-radius: 50%;
-      `;
-
-      const LoginBtn = styled("button")`
-         background: none;
-         border: 1px solid #495057;
-         color: #495057;
-         outline: none;
-         font-size: 0.875rem;
-         padding: 0.5rem 0.875rem;
-         border-radius: 4px;
-         line-height: 0.875rem;
-         cursor: pointer;
-
-         &:hover {
-            border: 1px solid #0c8599;
-            color: #0c8599;
-         }
-      `;
 
       const itemList = article.boards.map(el => <Card data={el}></Card>);
 
@@ -114,5 +64,56 @@ class MainBoard extends Component {
       );
    }
 }
+
+const Wrapper = styled("div")`
+   // background-color: #f1f3f5;
+   height: 100%;
+`;
+
+const CardList = styled("div")`
+display: flex;
+flex-wrap: wrap;
+margin-left: 18rem;
+padding: 1rem;
+
+@media (max-width: 1024px) {
+   margin-top: 5rem;
+   padding: 0.75rem
+   margin-left: 0;
+}
+`;
+
+const Header = styled("div")`
+   display: flex;
+   justify-content: flex-end;
+   padding: 1.75rem;
+
+   @media (max-width: 1023px) {
+      background-color: #fff;
+   }
+`;
+
+const Profile = styled("img")`
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+`;
+
+const LoginBtn = styled("button")`
+   background: none;
+   border: 1px solid #495057;
+   color: #495057;
+   outline: none;
+   font-size: 0.875rem;
+   padding: 0.5rem 0.875rem;
+   border-radius: 4px;
+   line-height: 0.875rem;
+   cursor: pointer;
+
+   &:hover {
+      border: 1px solid #0c8599;
+      color: #0c8599;
+   }
+`;
 
 export default withRouter(MainBoard);

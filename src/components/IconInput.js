@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { IoMdMail, IoMdLock, IoMdHelp } from "react-icons/io";
 
@@ -30,7 +30,11 @@ const Icon = styled("div")`
 `;
 
 const IconInput = props => {
-   const { icon, placeholder } = props;
+   const { name, icon, placeholder, type, handleChange, value } = props;
+
+   const onChange = e => {
+      handleChange(name, e.target.value);
+   };
 
    const returnIcon = () => {
       switch (icon) {
@@ -46,7 +50,11 @@ const IconInput = props => {
    return (
       <Wrapper>
          <Icon>{returnIcon()}</Icon>
-         <Input placeholder={placeholder}></Input>
+         <Input
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+         ></Input>
       </Wrapper>
    );
 };

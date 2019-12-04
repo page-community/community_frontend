@@ -8,7 +8,7 @@ const useToolTip = () => {
       setTimeout(() => setVisible(false), 3000);
    }, []);
 
-   return [visible, handleVisible];
+   return { visible, handleVisible };
 };
 
 export default useToolTip;
